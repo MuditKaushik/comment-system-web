@@ -1,0 +1,98 @@
+//#region Colors
+$color-white: #ffff;
+$color-cream: #f5f5f5;
+$color-black: #1e2022;
+$color-grey: #495057;
+$color-primary: #007bff;
+$color-success: #d4edda;
+$color-error: #f8d7da;
+$color-info: #cce5ff;
+$color-warning: #fff3cd;
+$color-map: (
+  "white": #{$color-white},
+  "cream": #{$color-cream},
+  "black": #{$color-black},
+  "grey": #{$color-grey},
+  "primary": #{$color-primary}
+);
+$border-radius: 0.25rem;
+$round-button-radius: 2rem;
+$border-width: 0.25rem;
+$project-card-height: 100px;
+$z-index-max: 3000;
+
+$toast-message-width: 350px;
+$toast-z-index: calc(#{$z-index-max} - 600);
+
+$toast-background-color-map: (
+  "success": #d4edda,
+  "error": #f8d7da,
+  "warning": #fff3cd,
+  "info": #d1ecf1
+);
+$toast-fore-color-map: (
+  "success": #155724,
+  "error": #721c24,
+  "warning": #856404,
+  "info": #0c5460
+);
+$toast-border-color-map: (
+  "success": #c3e6cb,
+  "error": #f5c6cb,
+  "warning": #ffeeba,
+  "info": #bee5eb
+);
+
+//#endregion
+
+//#region folder path for static images
+$folder: "./assets/images/";
+//#endregion
+
+//#region Mixins
+@mixin show-shadow-glow {
+  box-shadow: 0 0 10px 0.2rem rgba(38, 143, 255, 0.5);
+}
+@mixin show-shadow {
+  box-shadow: 4px 4px 1px rgba(0, 0, 0, 0.15);
+}
+@mixin active-border-right {
+  border-left-width: $border-width;
+  border-left-color: map-get($map: $color-map, $key: "primary");
+}
+@mixin space-between-elements {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+//#endregion
+
+//#region Slider animation
+/*
+  Parameters: $duration,$timeFunction,$delay,$properties...
+*/
+@mixin custom-transitions($delay, $duration, $property, $timeFunction: ease-in-out) {
+  $propertiesDuration: $duration;
+
+  transition-property: $property;
+  transition-duration: $propertiesDuration;
+  transition-timing-function: $timeFunction;
+  transition-delay: $delay;
+
+  -webkit-transition-property: $property;
+  -webkit-transition-duration: $propertiesDuration;
+  -webkit-transition-timing-function: $timeFunction;
+  -webkit-transition-delay: $delay;
+
+  -moz-transition-property: $property;
+  -moz-transition-duration: $propertiesDuration;
+  -moz-transition-timing-function: $timeFunction;
+  -moz-transition-delay: $delay;
+}
+@mixin rotate-element($degree) {
+  $angle: #{$degree + "deg"};
+  transform: rotate($angle);
+  -moz-transform: rotate($angle);
+  -webkit-transform: rotate($angle);
+}
+//#endregion

@@ -1,0 +1,34 @@
+<div *ngFor="let comment of comments" class="card">
+    <div class="card-body">
+        <h5 class="corner-align">
+            {{comment.username}}
+            <i class="card-subtitle mb-2 text-muted">{{comment.datetime | localdatetime }}</i>
+        </h5>
+        <div class="card-text" *ngIf="!comment.isedit && !comment.isreply">{{comment.comment}}</div>
+        <div class="card-text" *ngIf="comment.isedit || comment.isreply">
+            <div class="row">
+                <div class="col form-group">
+                    <input class="form-control form-control-lg form-control-sm" [value]="comment.comment" type="text"
+                        name="edit-comment" id="edit-{{comment.id}}"
+                        (change)="comment.editcomment = $event.target.value" />
+                </div>
+            </div>
+        </div>
+        <!-- <div class="reply">
+            <app-user-comment-reply></app-user-comment-reply>
+        </div> -->
+        <ng-template [ngIf]="canShowCommentMenu && !comment.isreply && !comment.isedit">
+            <a href="#" class="card-link" (click)="$event.preventDefault(); comment.isreply=true;">Reply</a>
+            <a href="#" class="card-link" *ngIf="canEditComment(comment.userid);"
+                (click)="$event.preventDefault(); comment.isedit=true;">Edit</a>
+        </ng-template>
+        <ng-template [ngIf]="comment.isedit || comment.isreply">
+            <a href="#" class="card-link"
+                (click)="$event.preventDefault(); comment.isedit=false;comment.isreply=false;">Cancel</a>
+            <a href="#" class="card-link" *ngIf="comment.isedit"
+                (click)="$event.preventDefault();edit(comment);">Save</a>
+            <a href="#" class="card-link" *ngIf="comment.isreply"
+                (click)="$event.preventDefault();reply(comment);">Send</a>
+        </ng-template>
+    </div>
+</div>

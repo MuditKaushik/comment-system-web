@@ -1,0 +1,9 @@
+view-user-comment {
+  > div.card:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.no-border {
+  border: none;
+}

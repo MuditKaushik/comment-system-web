@@ -1,0 +1,17 @@
+<div class="row position-sticky">
+    <div class="col">
+        <div class="form-group">
+            <div class=" input-group">
+                <input class="form-control form-control-lg form-control-sm" [(ngModel)]="comment" type="text"
+                    name="comment" id="comment" placeholder="Add your comment here {{selectedUser | name: false}}." />
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" [disabled]="isPostDisable" (click)="post()" type="button"
+                        id="submit">Submit</button>
+                </div>
+            </div>
+            <small id="post-message" *ngIf="isPostDisable" class="form-text text-muted">
+                You must select user to post comments.
+            </small>
+        </div>
+    </div>
+</div>

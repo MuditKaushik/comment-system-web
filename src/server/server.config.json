@@ -1,0 +1,8 @@
+{
+    "port": 1990,
+    "env": "DEV",
+    "apiProxy": {
+        "dev": "http://localhost:8200/",
+        "prod": ""
+    }
+}

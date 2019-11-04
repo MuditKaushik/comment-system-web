@@ -1,0 +1,15 @@
+<app-loader></app-loader>
+<nav class="navbar position-sticky header">
+    <span class="navbar-brand mb-0">Comment System</span>
+    <form class="form-inline my-2 my-lg-0">
+        <select (change)="selectedUser($event.target.value);" class="custom-select">
+            <option selected value="">Select user</option>
+            <option [value]="user.userid" *ngFor="let user of users">{{user|name}}</option>
+        </select>
+    </form>
+</nav>
+<div class="container-fluid mt-2">
+    <app-toast-message></app-toast-message>
+    <app-banner-message></app-banner-message>
+    <router-outlet></router-outlet>
+</div>
