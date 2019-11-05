@@ -28,9 +28,9 @@ export class CommentHttp {
             return (response.status === 200 && response.body != null) ? <IUserComments>response.body : {} as IUserComments;
         }));
     }
-    getReplies(commentId: string): Observable<Array<ICommentModel>> {
+    getReplies(commentId: string): Observable<Array<IUserComments>> {
         return this.http.get(`api/comment/reply/${commentId}`, { observe: 'response' }).pipe(map((response) => {
-            return (response.status === 200 && response.body != null) ? <Array<ICommentModel>>response.body : [];
+            return (response.status === 200 && response.body != null) ? <Array<IUserComments>>response.body : [];
         }));
     }
     getAllUserComment(): Observable<Array<IUserComments>> {

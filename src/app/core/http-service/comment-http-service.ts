@@ -28,7 +28,7 @@ export class CommentService {
             return usercomments;
         }));
     }
-    getReplies(commentId: string): Observable<Array<ICommentModel>> {
+    getReplies(commentId: string): Observable<Array<IUserComments>> {
         return this.commentHttp.getReplies(commentId).pipe(map((comments) => {
             return comments;
         }));

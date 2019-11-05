@@ -9,9 +9,7 @@ import { AppCommonService } from '../../core/services/common-service';
 export class UserCommentComponent implements OnInit {
     @Input('comments') comments: Array<IUserComments>;
     constructor(private commentService: CommentService, private commonService: AppCommonService) { }
-    ngOnInit(): void {
-        console.log(this.comments);
-    }
+    ngOnInit(): void { }
     edit(comment: IUserComments): void {
         if (this.isValidComment(comment)) {
             let editComment: ICommentModel = comment;
@@ -37,7 +35,7 @@ export class UserCommentComponent implements OnInit {
         let replyComment: IReplyComment = {
             comment: comment.editcomment,
             parentid: comment.commentid,
-            userid: comment.userid
+            userid: this.commonService.getSelectedUser.userid
         };
         if (this.isValidReply(replyComment)) {
             this.commentService.saveReply(replyComment).subscribe((replyComment) => {

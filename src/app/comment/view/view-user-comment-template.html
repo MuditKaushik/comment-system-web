@@ -14,9 +14,9 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="reply">
-            <app-user-comment-reply></app-user-comment-reply>
-        </div> -->
+        <div class="reply float-right">
+            <app-user-comment-reply [commentId]="comment.commentid"></app-user-comment-reply>
+        </div>
         <ng-template [ngIf]="canShowCommentMenu && !comment.isreply && !comment.isedit">
             <a href="#" class="card-link" (click)="$event.preventDefault(); comment.isreply=true;">Reply</a>
             <a href="#" class="card-link" *ngIf="canEditComment(comment.userid);"

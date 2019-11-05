@@ -2,6 +2,17 @@ view-user-comment {
   > div.card:not(:first-child) {
     margin-top: 1rem;
   }
+  > div.card {
+    > div.card-body {
+      > .reply {
+        width: 70%;
+        margin: auto 5rem;
+      }
+    }
+  }
+}
+
+app-user-comment-reply {
 }
 
 .no-border {

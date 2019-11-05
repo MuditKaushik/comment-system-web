@@ -1,9 +1,31 @@
-<div class="card no-border">
+<div *ngFor="let reply of replies" class="card no-border">
     <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <h5 class="corner-align">
+            {{reply.username}}
+            <i class="card-subtitle mb-2 text-muted">{{reply.datetime | localdatetime}}</i>
+        </h5>
+        <div class="card-text" *ngIf="!reply.isedit && !reply.isreply">{{reply.comment}}</div>
+        <div class="card-text" *ngIf="reply.isedit || reply.isreply">
+            <div class="row">
+                <div class="col form-group">
+                    <input class="form-control form-control-lg form-control-sm" [value]="reply.comment" type="text"
+                        name="edit-reply" id="edit-reply-{{reply.id}}"
+                        (change)="reply.editcomment = $event.target.value" />
+                </div>
+            </div>
+        </div>
+        <ng-template [ngIf]="canShowCommentMenu && !reply.isreply && !reply.isedit">
+            <a href="#" class="card-link" (click)="$event.preventDefault(); reply.isreply=true;">Reply</a>
+            <a href="#" class="card-link" *ngIf="canEditComment(reply.userid);"
+                (click)="$event.preventDefault(); reply.isedit=true;">Edit</a>
+        </ng-template>
+        <ng-template [ngIf]="reply.isedit || reply.isreply">
+            <a href="#" class="card-link"
+                (click)="$event.preventDefault(); reply.isedit=false;reply.isreply=false;">Cancel</a>
+            <a href="#" class="card-link" *ngIf="reply.isedit"
+                (click)="$event.preventDefault();replyEdit(reply);">Save</a>
+            <a href="#" class="card-link" *ngIf="reply.isreply"
+                (click)="$event.preventDefault();commentReply(reply);">Send</a>
+        </ng-template>
     </div>
 </div>
